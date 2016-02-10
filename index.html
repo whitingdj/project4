@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Lightbox Gallery</title>
+  	<link href='https://fonts.googleapis.com/css?family=Nunito:400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,700' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="css/normalize.css">
+  	<link rel="stylesheet" href="lightbox/css/lightbox.min.css">
+  	<link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+  	<header class="main-header">
+	  	<form>
+		  <input type="search" name="search" placeholder="Search" id="filter-search">
+		</form>
+	</header>
+
+	<div class="container">
+		<a href="img/01.jpg" data-lightbox="gallery" data-title="Hay Bales - I love hay bales. Took this snap on a drive through the countryside past some straw fields."><img src="img/thumbnails/01.jpg" alt="Picture of hay bales" class="images"></a>
+		<a href="img/02.jpg" data-lightbox="gallery" data-title="Lake - The lake was so calm today. We had a great view of the snow on the mountains from here."><img src="img/thumbnails/02.jpg" alt="Picture of lake" class="images"></a>
+		<a href="img/03.jpg" data-lightbox="gallery" data-title="Canyon - I hiked to the top of the mountain and got this picture of the canyon and trees below."><img src="img/thumbnails/03.jpg" alt="Picture of canyon" class="images"></a>
+		<a href="img/04.jpg" data-lightbox="gallery" data-title="Iceberg - It was amazing to see an iceberg up close, it was so cold but did not snow today."><img src="img/thumbnails/04.jpg" alt="Picture of iceberg" class="images"></a>
+		<a href="img/05.jpg" data-lightbox="gallery" data-title="Desert - The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons."><img src="img/thumbnails/05.jpg" alt="Picture of desert" class="images"></a>
+		<a href="img/06.jpg" data-lightbox="gallery" data-title="Fall - Fall is coming, I love when the leaves on the trees start to change color."><img src="img/thumbnails/06.jpg" alt="Picture of fall" class="images"></a>
+		<a href="img/07.jpg" data-lightbox="gallery" data-title="Plantation - I drove past this plantation yesterday, everything is so green!"><img src="img/thumbnails/07.jpg" alt="Picture of plantation" class="images"></a>
+		<a href="img/08.jpg" data-lightbox="gallery" data-title="Dunes - My summer vacation to the Oregon Coast. I love the sandy dunes!"><img src="img/thumbnails/08.jpg" alt="Picture of dunes" class="images"></a>
+		<a href="img/09.jpg" data-lightbox="gallery" data-title="Countryside Lane - We enjoyed a quiet stroll down this countryside lane."><img src="img/thumbnails/09.jpg" alt="Picture of Countryside Lane" class="images"></a>
+		<a href="img/10.jpg" data-lightbox="gallery" data-title="Sunset - Sunset at the coast! The sky turned a lovely shade of orange."><img src="img/thumbnails/10.jpg" alt="Picture of sunset" class="images"></a>
+		<a href="img/11.jpg" data-lightbox="gallery" data-title="Cave - I did a tour of a cave today and the view of the landscape below was breathtaking."><img src="img/thumbnails/11.jpg" alt="Picture of cave" class="images"></a>
+		<a href="img/12.jpg" data-lightbox="gallery" data-title="Bluebells - I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."><img src="img/thumbnails/12.jpg" alt="Picture of blue bells" class="images"></a>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="lightbox/js/lightbox.min.js"></script>
+	<script>
+	    lightbox.option({
+	      'wrapAround': true,
+	      'alwaysShowNavOnTouchDevices': true
+	    })
+	</script>
+	<script>
+		(function() {
+			var $imgs = $('.container img');
+			var $search = $('#filter-search');
+			var cache = [];
+
+			$imgs.each(function() {
+				cache.push({
+					element: this,
+					text: this.alt.trim().toLowerCase()
+				});
+			});
+
+			function filter() {
+				var question = this.value.trim().toLowerCase();
+
+				cache.forEach(function(img) {
+					var index = 0;
+					if (question){
+						index = img.text.indexOf(question);
+					}
+
+					img.element.style.display = index === -1 ? 'none' : '';
+				});
+			}
+
+			if ('oninput' in $search[0]) {
+				$search.on('input', filter);
+			} else {
+				$search.on('keyup', filter);
+			}
+		}());
+	</script>
+
+  </body>
+</html>
