@@ -25,6 +25,8 @@ input{
 .lb-data .lb-details{
 	text-align: center;
 }
+
+
 /*****************************
 CONTAINER LAYOUT
 *****************************/
@@ -39,10 +41,9 @@ CONTAINER LAYOUT
 
 .container{
 	display: flex;
-	width: 100%;
 	flex-wrap: wrap;
-	justify-content: center;
-	margin: 20px;
+	margin: auto;
+	width: 980px;
 }
 
 
@@ -50,6 +51,10 @@ CONTAINER LAYOUT
 .images{
 	margin-bottom: 60px;
 	margin-right: 60px;
+}
+
+.zero{
+	margin-right: 0;
 }
 
 
@@ -63,4 +68,16 @@ CONTAINER LAYOUT
 		width: 100%;
 	}
 
+}
+
+@media (max-width: 1000px) {
+	
+	.container{
+		justify-content: center;
+		width: 100%;
+	}
+
+	.zero{
+		margin-right: 60px;
+	}
 }
